@@ -26,6 +26,7 @@ namespace AudioPlayer
     public partial class MainWindow : Window
     {
         int MediaIndex = 0;
+        int PlayStopIndex = 0;
         string[] files;
         public MainWindow()
         {
@@ -48,6 +49,10 @@ namespace AudioPlayer
                 {
                     MusicList.Items.Add(Path.GetFileName(file));
                 }
+                
+                PlayStop.IsEnabled = true;
+                SkipNext.IsEnabled = true;
+                SkipPrevious.IsEnabled = true;
 
                 PlayMusic();
             }
@@ -82,13 +87,45 @@ namespace AudioPlayer
 
         private void Player_MediaEnded(object sender, RoutedEventArgs e)
         {
-            if (MediaIndex == files.Length)
+            if (MediaIndex == files.Length-1)
             {
                 MediaIndex = 0;
             }
             else
             {
                 MediaIndex++;
+            }
+            PlayMusic();
+        }
+
+        private void PlayStop_Click(object sender, RoutedEventArgs e)
+        {
+            if (PlayStopIndex == 0)
+            {
+                Player.Pause();
+                PlayStopIndex = 1;
+            }
+            else if (PlayStopIndex == 1)
+            {
+                Player.Play();
+                PlayStopIndex = 0;
+            }
+        }
+
+        private void SkipPrevious_Click(object sender, RoutedEventArgs e)
+        {
+            if (MediaIndex != 0)
+            {
+                MediaIndex -= 1;
+            }
+            PlayMusic();
+        }
+
+        private void SkipNext_Click(object sender, RoutedEventArgs e)
+        {
+            if (MediaIndex != files.Length-1)
+            {
+                MediaIndex += 1;
             }
             PlayMusic();
         }

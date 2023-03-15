@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\mpt\С#\WPFAudioPlayer\obj\Debug\net6.0-windows\
+C:\mpt\C#\AudioPlayer\obj\Debug\net6.0-windows\
 AudioPlayer
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\mpt\С#\WPFAudioPlayer\App.xaml
+C:\mpt\C#\AudioPlayer\App.xaml
 11407045341
 
 3-1233169557
-199922142323
+199890740474
 MainWindow.xaml;
 
 False

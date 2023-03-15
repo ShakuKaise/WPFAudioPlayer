@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\mpt\\С#\\WPFAudioPlayer\\AudioPlayer.csproj": {}
+    "C:\\mpt\\C#\\AudioPlayer\\AudioPlayer.csproj": {}
   },
   "projects": {
-    "C:\\mpt\\С#\\WPFAudioPlayer\\AudioPlayer.csproj": {
+    "C:\\mpt\\C#\\AudioPlayer\\AudioPlayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\mpt\\С#\\WPFAudioPlayer\\AudioPlayer.csproj",
+        "projectUniqueName": "C:\\mpt\\C#\\AudioPlayer\\AudioPlayer.csproj",
         "projectName": "AudioPlayer",
-        "projectPath": "C:\\mpt\\С#\\WPFAudioPlayer\\AudioPlayer.csproj",
-        "packagesPath": "C:\\Users\\uter\\.nuget\\packages\\",
-        "outputPath": "C:\\mpt\\С#\\WPFAudioPlayer\\obj\\",
+        "projectPath": "C:\\mpt\\C#\\AudioPlayer\\AudioPlayer.csproj",
+        "packagesPath": "C:\\Users\\Shuvi\\.nuget\\packages\\",
+        "outputPath": "C:\\mpt\\C#\\AudioPlayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\uter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Shuvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -68,7 +68,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
