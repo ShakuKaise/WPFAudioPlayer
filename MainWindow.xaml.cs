@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Path = System.IO.Path;
 
 namespace AudioPlayer
@@ -24,7 +25,8 @@ namespace AudioPlayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MediaPlayer player;
+        int MediaIndex = 0;
+        string[] files;
         public MainWindow()
         {
             InitializeComponent();
@@ -39,7 +41,7 @@ namespace AudioPlayer
             {
                 MusicList.Items.Clear();
                 
-                string[] files = Directory.GetFiles(dialog.FileName, "*.*")
+                files = Directory.GetFiles(dialog.FileName, "*.*")
                                             .Where(s => s.EndsWith(".mp3") || s.EndsWith(".mp4"))
                                             .ToArray();
                 foreach (string file in files)
@@ -47,16 +49,48 @@ namespace AudioPlayer
                     MusicList.Items.Add(Path.GetFileName(file));
                 }
 
-                var FirstFile = files[0];
-                if (Path.GetExtension(FirstFile) == ".mp4")
-                {
-                    Player.Source = new Uri(files[0]);
-                }
-                else
-                {
-                    Player.Source = new Uri("C:\\Users\\Shuvi\\Music\\noimage.jpg");
-                }
+                PlayMusic();
             }
+        }
+        private void PlayMusic()
+        {
+            var file = files[MediaIndex];
+            Player.Source = new Uri(file);
+            Player.Play();
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(100);
+            timer.Tick += timer_Tick;
+            timer.Start();
+        }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (Player.Source != null)
+            {
+                MediaSlider.Value = Player.Position.Ticks;
+            }
+        }
+        private void Player_MediaOpened(object sender, RoutedEventArgs e)
+        {
+            MediaSlider.Value = 0;
+            MediaSlider.Maximum = Player.NaturalDuration.TimeSpan.Ticks;
+        }
+
+        private void MediaSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Player.Position = new TimeSpan(Convert.ToInt64(MediaSlider.Value));
+        }
+
+        private void Player_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            if (MediaIndex == files.Length)
+            {
+                MediaIndex = 0;
+            }
+            else
+            {
+                MediaIndex++;
+            }
+            PlayMusic();
         }
     }
 }
